@@ -43,7 +43,40 @@ public class Hand {
 	 * e.g., "TD TC TH 7C 7D" returns True for n=2 and n=3, and False for n=1 and n=4
      */
     protected boolean hasNKind(int n) {
-    	return false;
+    	
+    	int i,j,k;
+    	int cardSameRank1 = 1;
+    	int cardSameRank2 = 1;
+    	int cardSameRank3 =1;
+    	int prevRank = hand.get(0).getRank();
+    	
+    	for(i=1;i<hand.size();i++){
+    		if(hand.get(i).getRank()==prevRank) cardSameRank1++;
+    		else break;
+    		prevRank = hand.get(i).getRank();
+    	}
+    	
+    	prevRank = hand.get(i).getRank();
+    	
+    	if(i!=hand.size()){
+        	for(j=i+1;j<hand.size();j++){
+        		if(hand.get(j).getRank()==prevRank) cardSameRank2++;
+        		else break;
+        		prevRank = hand.get(j).getRank();
+        	}
+   	
+        	if(j!=hand.size()){
+	        	prevRank = hand.get(j).getRank();		    	
+	        	for(k=j+1;k<hand.size();k++){
+	        		if(hand.get(k).getRank()==prevRank) cardSameRank3++;
+	        		else break;
+	        		prevRank = hand.get(k).getRank();
+	        	}
+	    	}
+    	}
+    	    	
+    	if(cardSameRank1 == n || cardSameRank2 == n || cardSameRank3 == n) return true;
+    	else return false;
     }
     
     /**
@@ -75,6 +108,7 @@ public class Hand {
         int prevRank = tempHand.get(0).getRank();
         for(int i=1;i<tempHand.size();i++){
         	if((tempHand.get(i).getRank()-1)!=prevRank) return false;
+        	prevRank = tempHand.get(i).getRank();
         }
         
         return true;

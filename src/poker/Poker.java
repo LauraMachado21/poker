@@ -15,15 +15,14 @@ public class Poker {
 		h.printHand();
 	}
 	
-	public void getRank(){
-		System.out.println("Kind: " + h.getRank());
+	public String getHandRank(){
+		return h.getRank();
 	}
 	
 	public static void main(String[] args){
 	    Poker p = new Poker();
-	    p.createHand("AD 2D 3D 4D 5D");
-	    p.printHand();
-	    p.getRank();
+	    p.createHand("TD TC TH 7C 7D");
+	    System.out.println("Kind: " + p.getHandRank());
 	}
 
 }
